@@ -28,7 +28,7 @@ public class StreamsToFluxesDemo {
 
     @Test
     void SimpleStreamTest() {
-
+        long before = System.currentTimeMillis();
         IntStream.range(1, 300)
                 .parallel()
                 .map(__ -> random.nextInt(100, 1000))
@@ -36,6 +36,7 @@ public class StreamsToFluxesDemo {
                 .map(rub -> currencyCalculator.getRates(getRandomCurrency(), rub))
                 .peek(result -> log.info(GREEN.getCode() + "Conversion result {}" + RESET.getCode(), result))
                 .toList();
+        System.out.println(System.currentTimeMillis() - before);
     }
 
     @Test
